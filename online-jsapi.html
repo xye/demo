@@ -1,0 +1,41 @@
+<html>
+    <head>
+      <title>testing 3rd party qr code</title>
+      <!-- <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script> -->
+      <!-- <script src="https://a.alipayobjects.com/g/h5-lib/alipayjsapi/3.0.3/alipayjsapi.min.js"></script> -->
+      <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+    </head>
+    <body>
+      <h1>testing jsapi with online API</h1>
+      <a href="javascript:void(0)" class="btn wap">click me: WAP</a>
+      <script>
+          //通过URL传入tradeno
+          var UrlParameters = window.location.search.slice(1)
+                        .split('&')
+                        .reduce(function _reduce (/*Object*/ a, /*String*/ b) {
+                          b = b.split('=');
+                          a[b[0]] = decodeURIComponent(b[1]);
+                          return a;
+                        }, {});
+  
+          function ready(callback) {
+            // 如果jsbridge已经注入则直接调用
+            if (window.AlipayJSBridge) {
+              callback && callback();
+            } else {
+              // 如果没有注入则监听注入的事件
+              document.addEventListener('AlipayJSBridgeReady', callback, false);
+            }
+          }
+          ready(function() {
+            document.querySelector('.wap').addEventListener('click', function() {
+              AlipayJSBridge.call("tradePay",{
+                  orderStr: '_input_charset=UTF-8&body=test&currency=USD&notify_url=https://www.google.com/&out_trade_no=TRADE_xye202005230930004&partner=2088021017666931&product_code=NEW_WAP_OVERSEAS_SELLER&refer_url=https://www.google.com&return_url=https://www.google.com/&service=create_forex_trade_wap&sign=5a2bc7c4ecc34829aa2209c844fec8b1&subject=Mikas coffee shop&timeout_rule=12h&total_fee=0.01&trade_information={"business_type":"4","goods_info":"Macbook 12 inch M3 8G 256G SSD^1|Apple iPad Pro 11 inch^1","total_quantity":"2"}'
+              }, function(result){
+                  alert(JSON.stringify(result));
+              });
+            });
+          });
+          </script>
+    </body>
+  </html>

@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php": "~7",
+        "alipaysdk/easysdk": "^1.2"
+    }
+}

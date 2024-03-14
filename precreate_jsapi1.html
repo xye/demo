@@ -1,0 +1,43 @@
+<html>
+    <head>
+      <title>testing pre-create qr code</title>
+      <!-- <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script> -->
+      <!-- <script src="https://a.alipayobjects.com/g/h5-lib/alipayjsapi/3.0.3/alipayjsapi.min.js"></script> -->
+      <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.min.js"></script>
+    </head>
+    <body>
+      <h1>testing jsapi with pre-create API</h1>
+      <a href="javascript:void(0)" class="btn wap">click me: precreate</a>
+      <script>
+          //通过URL传入tradeno
+          var UrlParameters = window.location.search.slice(1)
+                        .split('&')
+                        .reduce(function _reduce (/*Object*/ a, /*String*/ b) {
+                          b = b.split('=');
+                          a[b[0]] = decodeURIComponent(b[1]);
+                          return a;
+                        }, {});
+  
+          function ready(callback) {
+            // 如果jsbridge已经注入则直接调用
+            if (window.AlipayJSBridge) {
+              callback && callback();
+            } else {
+              // 如果没有注入则监听注入的事件
+              document.addEventListener('AlipayJSBridgeReady', callback, false);
+            }
+          }
+          ready(function() {
+            document.querySelector('.wap').addEventListener('click', function() {
+              AlipayJSBridge.call("pushWindow",{
+                  url: 'https://qr.alipay.com/bax02956hi7bcpwbdt6d2009'
+              });
+            });
+
+            document.addEventListener('resume', function(event) {
+                alert('back to original window');
+            });
+          });
+          </script>
+    </body>
+  </html>

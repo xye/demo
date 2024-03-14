@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>在家办公的你, 还是点一份外卖犒劳一下吧.</title>
+    <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+  </head>
+  <body>
+    <!-- <h1>test sharing</h1> -->
+    <a href="javascript:void(0)" class="btn contact">Click Me</a>
+    <iframe src="https://www.chowbus.com/" style="height:100%; width:100%;"></iframe>></iframe>
+    <script>
+        function ready(callback) {
+          // 如果jsbridge已经注入则直接调用
+          if (window.AlipayJSBridge) {
+            callback && callback();
+          } else {
+            // 如果没有注入则监听注入的事件
+            document.addEventListener('AlipayJSBridgeReady', callback, false);
+          }
+        }
+        ready(function() {
+          document.querySelector('.contact').addEventListener('click', function() {
+              // alert('tttt');
+            AlipayJSBridge.call(
+                  'easyShare', {
+                    //MORPHO_US_WM0520
+                    //shawn_test_0416
+                  'bizType': 'MORPHO_US_WM0520',//自己申请
+                  'title': 'Chowbus',
+                  'desc': '零接触 安心享美食',
+                  //Chowbus is a food delivery app that helps you discover authentic, international foods right in the city you call home',
+                  'iconUrl': 'https://is2-ssl.mzstatic.com/image/thumb/Purple123/v4/a3/21/bf/a321bf92-048d-18a1-1826-47f1a55228b6/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/230x0w.png',
+                  'padTemplate': '0',
+                  'url': 'https://www.chowbus.com/?uid=12w45',
+                  'tokenParam':{
+                    'tokenPreText':'最近好吗？我在蓝色某宝点了一份外卖, 要不要给你送过来?#',
+                    'tokenEndText':'#【长按复制此条消息，打开支付宝参与活动】',
+                  },
+                },
+                function(data) {
+                  alert(JSON.stringify(data));
+                }
+              );
+              // alert('aaaa');
+          });
+        });
+        </script>
+  </body>
+</html>

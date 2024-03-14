@@ -1,0 +1,22 @@
+<script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+
+
+<button id="J_btn_url" class="btn btn-default">button 1</button>
+<button id="J_btn_withData" class="btn btn-default">button 2 with data</button>
+<script>
+  var btnUrl = document.querySelector('#J_btn_url');
+  var btnWithData = document.querySelector('#J_btn_withData');
+  btnUrl.addEventListener('click', function(){
+    ap.pushWindow('https://mapi.alipaydev.com/gateway.do?_input_charset=UTF-8&app_pay=Y&currency=USD&notify_url=http%3A%2F%2Fldd-tys.yunkeguan.com%2FappIpnCallbackNotify%2F43%2F14%2F297553621538848194%2Falipay-transaction-notify&order_gmt_create=2020-04-02+13%3A54%3A11&order_valid_time=7200&out_trade_no=297553621538848194&partner=2088621891278974&product_code=NEW_WAP_OVERSEAS_SELLER&refer_url=https%3A%2F%2Fyuansfer.yunkeguan.com&return_url=http%3A%2F%2Fldd-tys.yunkeguan.com%2FappIpnCallbackNotify%2F297553621538848194%2Fyuansfer-secure-callback&secondary_merchant_id=200043&secondary_merchant_industry=5812&secondary_merchant_name=yuansferMerchantTest&service=create_forex_trade_wap&sign=416166f05cc5f6f799e2cbbaf7046f5f&sign_type=MD5&subject=340ec9e08b5459090fabfe4005854f32&supplier=yuansferMerchantTest&total_fee=11.00');
+  });
+  btnWithData.addEventListener('click', function(){
+    ap.pushWindow({
+      url: 'https://google.com',
+      data: {
+        keyword: '美食',
+        city: '310100',
+        view: 'map'
+      }
+    });
+  });
+</script>

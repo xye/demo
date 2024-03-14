@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>在家办公的你, 还是点一份外卖犒劳一下吧.</title>
+    <script src="https://gw.alipayobjects.com/as/g/h5-lib/alipayjsapi/3.1.1/alipayjsapi.inc.min.js"></script>
+  </head>
+  <body>
+    <!-- <h1>test sharing</h1> -->
+    <a href="javascript:void(0)" class="btn contact">Click Me</a>
+    <iframe src="https://shop.luniumall.com/mobile/index.php" style="height:100%; width:100%;"></iframe>></iframe>
+    <script>
+        function ready(callback) {
+          // 如果jsbridge已经注入则直接调用
+          if (window.AlipayJSBridge) {
+            callback && callback();
+          } else {
+            // 如果没有注入则监听注入的事件
+            document.addEventListener('AlipayJSBridgeReady', callback, false);
+          }
+        }
+        ready(function() {
+          document.querySelector('.contact').addEventListener('click', function() {
+            AlipayJSBridge.call(
+                  'easyShare', {
+                  'bizType': 'CA_SX_LN1',//支付宝指定
+                  'title': 'Luniu',
+                  'desc': '零接触 安心享美食',
+                  'iconUrl': 'https://luniumall.com/wp-content/uploads/2019/09/logo-298x300.jpg',
+                  'padTemplate': '0',
+                  'url': 'https://shop.luniumall.com/mobile/index.php/?uid=12w45',
+                  'tokenParam':{
+                    'tokenPreText':'最近好吗？我在蓝色某宝点了一份外卖, 要不要给你送过来?#',
+                    'tokenEndText':'#【长按复制此条消息，打开支付宝参与活动】',
+                  },
+                },
+                function(data) {
+                  alert(JSON.stringify(data));
+                }
+              );
+          });
+        });
+        </script>
+  </body>
+</html>
