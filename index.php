@@ -1,4 +1,12 @@
 <?php
+echo "Please click below link</br>";
+$url = "https://www.google.com/";
+
+echo "open in current tab: <a href='{$url}'>click here</a>";
+echo "</br>";
+echo "</br>";
+echo "</br>";
+echo "open in a new tab: <a href='{$url}' target='_blank'>click here</a>";
 
 error_log("BEGIN*************headers************************");
 $headers =  getallheaders();
